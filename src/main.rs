@@ -30,7 +30,10 @@ async fn main() {
             for (uuid, ld) in located_devices.iter() {
                 match ld.device.behavior {
                     Behavior::Slider => {
-                        ble_services.push(slider_service(uuid.clone(), Arc::clone(&session.shared_ble_command)));
+                        ble_services.push(slider_service(
+                            uuid.clone(),
+                            Arc::clone(&session.shared_ble_command),
+                        ));
                     }
                     _ => {}
                 }
@@ -39,7 +42,7 @@ async fn main() {
         _ => {}
     }
     ble_services.push(voice_service(
-        VOICE_UUID.clone(),
+        VOICE_UUID,
         Arc::clone(&session.shared_ble_command),
         located_devices.clone(),
     ));
