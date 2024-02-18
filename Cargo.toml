@@ -9,4 +9,5 @@ edition = "2021"
 bluer = { version = "0.17.0-pre1", features = ["full"] }
 device = { git = "https://github.com/vancolleague/device.git" }
 tokio = { version = "1.34", features = ["full"] }
-van-colleague = { path = "../van-colleague/" }
+van-colleague = { path = "https://github.com/vancolleague/van-colleague.git" }
+#van-colleague = { path = "../van-colleague/" }

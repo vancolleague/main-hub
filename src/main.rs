@@ -2,16 +2,11 @@ use std::default::Default;
 use std::sync::Arc;
 
 use bluer::Uuid;
-use tokio::{
-    main, spawn,
-    sync::{mpsc, Mutex},
-    task,
-};
 
 use device::Behavior;
 use van_colleague::{
     ble_server::{slider_service, voice_service},
-    session::{get_user_args, Session},
+    session::Session,
 };
 
 const VOICE_UUID: Uuid = Uuid::from_u128(0x7e1be1ebf9844e17b0f1049e02a39567);
