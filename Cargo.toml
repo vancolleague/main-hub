@@ -7,7 +7,8 @@ edition = "2021"
 
 [dependencies]
 bluer = { version = "0.17.0", features = ["full"] }
-device = { git = "https://github.com/vancolleague/device.git" }
+#device = { git = "https://github.com/vancolleague/device.git" }
+device = { path = "../device/" }
 tokio = { version = "1.36.0", features = ["full"] }
-van-colleague = { git = "https://github.com/vancolleague/van-colleague.git" }
-#van-colleague = { path = "../van-colleague/" }
+#van-colleague = { git = "https://github.com/vancolleague/van-colleague.git" }
+van-colleague = { path = "../van-colleague/" }

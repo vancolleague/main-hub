@@ -5,7 +5,7 @@ use bluer::Uuid;
 
 use device::Behavior;
 use van_colleague::{
-    ble_server::{slider_service, voice_service},
+    ble_server,
     session::Session,
 };
 
@@ -25,7 +25,7 @@ async fn main() {
             for (uuid, ld) in located_devices.iter() {
                 match ld.device.behavior {
                     Behavior::Slider => {
-                        ble_services.push(slider_service(
+                        ble_services.push(ble_server::slider_service(
                             uuid.clone(),
                             Arc::clone(&session.shared_ble_command),
                         ));
@@ -33,14 +33,14 @@ async fn main() {
                     _ => {}
                 }
             }
+            ble_services.push(ble_server::voice_service(
+                VOICE_UUID,
+                Arc::clone(&session.shared_ble_command),
+                located_devices.clone(),
+            ));
         }
         _ => {}
     }
-    ble_services.push(voice_service(
-        VOICE_UUID,
-        Arc::clone(&session.shared_ble_command),
-        located_devices.clone(),
-    ));
 
     session
         .run(VOICE_UUID, cli_command, located_devices, ble_services)
